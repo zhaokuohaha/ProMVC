@@ -8,7 +8,7 @@ namespace EssentialTools.Models
     /// <summary>
     /// 计算产品价格
     /// </summary>
-    public class LinqValueCalculater
+    public class LinqValueCalculater:IValueCalculator
     {
         public decimal ValueProducts(IEnumerable<Product> products)
         {

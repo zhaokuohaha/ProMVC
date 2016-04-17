@@ -18,7 +18,7 @@ namespace EssentialTools.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            LinqValueCalculater calc = new LinqValueCalculater();
+            IValueCalculator calc = new LinqValueCalculater();//向下转型
             ShoppingCart cart = new ShoppingCart(calc) { Products = products };
             decimal totalValue = cart.CalulaterProductTotal();
             return View(totalValue);
