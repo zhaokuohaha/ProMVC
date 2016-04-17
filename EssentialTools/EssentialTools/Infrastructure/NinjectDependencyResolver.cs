@@ -22,7 +22,7 @@ namespace EssentialTools.Infrastructure
 
         public IEnumerable<object> GetServices(Type serviceType)
         {
-            return kernel.GetAll(serviceType;
+            return kernel.GetAll(serviceType);
         }
 
         private void AddBindings()
