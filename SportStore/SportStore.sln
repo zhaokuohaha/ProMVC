@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.Domain", "SportStore.Domain\SportStore.Domain.csproj", "{E3E592DD-D17D-416B-B08C-3A72FFC95D79}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.WebUI", "SportStore.WebUI\SportStore.WebUI.csproj", "{7828A31D-131E-45EA-8BEB-CD1DAD4EED06}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EB799E98-7735-4905-96C1-11B2DC858894} = {EB799E98-7735-4905-96C1-11B2DC858894}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SportStore.UnitTests", "SportStore.UnitTests\SportStore.UnitTests.csproj", "{EB799E98-7735-4905-96C1-11B2DC858894}"
 EndProject
