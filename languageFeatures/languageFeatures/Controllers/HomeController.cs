@@ -75,9 +75,27 @@ namespace languageFeatures.Controllers
 					new Product{Name = "CornerFlag", Price = 34.95M}//角旗
 				}
             };
-            //神奇<  扩展方法的参数中加个this  这里就可以这样调用了
-            decimal cartTotal = cart.TotalPrices();
-            return View("Result", (object)String.Format("Total: {0:c}", cartTotal));
+            ////神奇<  扩展方法的参数中加个this  这里就可以这样调用了
+            //decimal cartTotal = cart.TotalPrices();
+            IEnumerable<Product> products = new ShoppingCart
+            {
+                Products = new List<Product>{
+                    new Product{Name = "Kayak", Category = "Watersports", Price = 1M},
+                    new Product{Name = "Lifejacket", Category = "Watersports", Price = 2M},
+                    new Product{Name = "SoccerBall", Category = "Soccer", Price = 3M},
+                    new Product{Name = "CornerFalg", Category = "Soccer", Price = 4M},
+                }
+            };
+            Product[] productArray =
+            {
+                new Product{Name = "Kayak", Category = "Watersports", Price = 1M},
+                new Product{Name = "Lifejacket", Category = "Watersports", Price = 2M},
+                new Product{Name = "SoccerBall", Category = "Soccer", Price = 3M},
+                new Product{Name = "CornerFalg", Category = "Soccer", Price = 4M},
+            };
+            decimal cartTotal = products.TotalPrices();
+            decimal arrayTotal = productArray.TotalPrices();
+            return View("Result", (object)String.Format("Cart Total : {0}, Array Total: {1}", cartTotal, arrayTotal));
         }
     }
 }
