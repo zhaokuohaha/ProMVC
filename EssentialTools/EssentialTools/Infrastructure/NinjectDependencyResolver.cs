@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using Ninject;
 using EssentialTools.Models;
+using System.Web.Mvc;
+
 namespace EssentialTools.Infrastructure
 {
-    public class NinjectDependencyResolver
+    public class NinjectDependencyResolver : IDependencyResolver
     {
         private IKernel kernel;
         public NinjectDependencyResolver()

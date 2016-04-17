@@ -16,15 +16,20 @@ namespace EssentialTools.Controllers
                     new Product{Name = "SoccerBall", Category = "Soccer", Price = 3M},
                     new Product{Name = "CornerFalg", Category = "Soccer", Price = 4M},
                                  };
+        private IValueCalculator calc;
+        public HomeController(IValueCalculator calc)
+        {
+            this.calc = calc;
+        }
         // GET: Home
         public ActionResult Index()
         {
-            //创建Ninject内核
-            IKernel ninjectKernel = new StandardKernel();
-            //绑定类
-            ninjectKernel.Bind<IValueCalculator>().To<LinqValueCalculater>();
-            //实际使用Ninject
-            IValueCalculator calc = ninjectKernel.Get<IValueCalculator>();
+            //    //创建Ninject内核
+            //    IKernel ninjectKernel = new StandardKernel();
+            //    //绑定类
+            //    ninjectKernel.Bind<IValueCalculator>().To<LinqValueCalculater>();
+            //    //实际使用Ninject
+            //    IValueCalculator calc = ninjectKernel.Get<IValueCalculator>();
 
             //IValueCalculator calc = new LinqValueCalculater();//向下转型
             ShoppingCart cart = new ShoppingCart(calc) { Products = products };
