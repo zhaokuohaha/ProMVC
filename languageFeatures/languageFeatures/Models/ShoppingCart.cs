@@ -5,7 +5,11 @@ using System.Web;
 
 namespace languageFeatures.Models
 {
-    public class ShoppigCart
+    /// <summary>
+    /// 购物车
+    /// </summary>
+    public class ShoppingCart
     {
+        public List<Product> Products { get; set; }
     }
 }

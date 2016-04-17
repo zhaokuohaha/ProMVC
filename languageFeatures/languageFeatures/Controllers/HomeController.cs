@@ -38,7 +38,7 @@ namespace languageFeatures.Controllers
                 ProductID = 100,
                 Name = "皮划艇",
                 Description = "一种个人用的小船",
-                price = 275M,
+                Price = 275M,
                 Category = "水上运动"
             };
             return View("Result", (object)String.Format("Category: {0}", myProduct.Category));
@@ -75,6 +75,7 @@ namespace languageFeatures.Controllers
 					new Product{Name = "CornerFlag", Price = 34.95M}//角旗
 				}
             };
+            //神奇<  扩展方法的参数中加个this  这里就可以这样调用了
             decimal cartTotal = cart.TotalPrices();
             return View("Result", (object)String.Format("Total: {0:c}", cartTotal));
         }

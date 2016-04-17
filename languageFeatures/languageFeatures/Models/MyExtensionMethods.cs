@@ -5,7 +5,16 @@ using System.Web;
 
 namespace languageFeatures.Models
 {
-    public class MyExtensionMethods
+    public static class MyExtensionMethods
     {
-    }
+        public static decimal TotalPrices(this ShoppingCart cartParam)
+        {
+            decimal total = 0;
+            foreach (Product pro in cartParam.Products)
+            {
+                total += pro.Price;
+            }
+            return total;
+        }
+        
 }
