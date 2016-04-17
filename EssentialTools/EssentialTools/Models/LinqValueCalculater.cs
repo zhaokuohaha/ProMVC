@@ -10,9 +10,12 @@ namespace EssentialTools.Models
     /// </summary>
     public class LinqValueCalculater:IValueCalculator
     {
+        private IDiscountHelper discounter;
+
+        public LinqValueCalculater(IDiscountHelper discounter) { this.discounter = discounter; }
         public decimal ValueProducts(IEnumerable<Product> products)
         {
-            return products.Sum(p => p.Price);
+            return discounter.ApplyDiscount(products.Sum(p => p.Price));
         }
     }
 }

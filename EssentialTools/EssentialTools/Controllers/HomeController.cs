@@ -16,6 +16,9 @@ namespace EssentialTools.Controllers
                     new Product{Name = "SoccerBall", Category = "Soccer", Price = 3M},
                     new Product{Name = "CornerFalg", Category = "Soccer", Price = 4M},
                                  };
+        /// <summary>
+        /// IValueCalculator实例变量, 在整个控制器类中用来表示构造器所接收的IValueCalculator
+        /// </summary>
         private IValueCalculator calc;
         public HomeController(IValueCalculator calc)
         {
