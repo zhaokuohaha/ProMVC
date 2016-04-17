@@ -48,9 +48,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Moq">
-      <HintPath>..\Moq.dll</HintPath>
-    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\Ninject.dll</HintPath>
     </Reference>
