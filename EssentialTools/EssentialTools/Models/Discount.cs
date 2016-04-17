@@ -12,6 +12,7 @@ namespace EssentialTools.Models
 
     public class DefaultDiscountHelper : IDiscountHelper
     {
+        public decimal DiscountSize { get; set; }
         /// <summary>
         /// 打折 固定10%
         /// </summary>
@@ -19,7 +20,7 @@ namespace EssentialTools.Models
         /// <returns></returns>
         public decimal ApplyDiscount(decimal totalParam)
         {
-            return (totalParam - (10m / 100m * totalParam));
+            return (totalParam - (DiscountSize / 100m * totalParam));
         }
     }
 }
