@@ -48,6 +48,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq">
+      <HintPath>..\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\Ninject.dll</HintPath>
     </Reference>
@@ -106,6 +109,7 @@
     <Compile Include="Models\FlexibleDiscountHelper.cs" />
     <Compile Include="Models\IValueCalculator.cs" />
     <Compile Include="Models\LinqValueCalculater.cs" />
+    <Compile Include="Models\MinumumDiscountHelper.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ShoppingCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
