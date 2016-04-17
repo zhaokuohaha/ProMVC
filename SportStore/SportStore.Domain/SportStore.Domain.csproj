@@ -76,6 +76,8 @@
   <ItemGroup>
     <Compile Include="Abstract\IProuctRepository.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Contrete\EFDbContext.cs" />
+    <Compile Include="Contrete\EFProductRepository.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
