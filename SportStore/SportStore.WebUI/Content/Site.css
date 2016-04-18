@@ -22,3 +22,52 @@ select,
 textarea {
     max-width: 280px;
 }
+
+body{
+    font-family:Cambria, Gabriola, "Times New Roman";
+    margin: 0;
+}
+
+#header{
+    background-color:#444;
+    border-bottom: 2px solid #111;
+    color: white;
+}
+
+#header .title{
+    font-size: 2em;
+    padding: .6em;
+}
+
+#content{
+    border-left: 2px solid gray;
+    margin-left: 9em;
+    padding: 1em;
+}
+
+#categories{
+    float:left;
+    width:8em;
+    padding:.3em;
+}
+
+.item{
+    border-top: 1px dotted gray;
+    padding-top: .7em;
+    margin-bottom: .7em;
+}
+
+.item:first-child{
+    border-top: none;
+    padding-top: 0;
+}
+
+.item h3{
+    font-size: 1.3em;
+    margin: 0 0 .25em 0;
+}
+
+.item h4{
+    font-size: 1.1em;
+    margin: .4em 0 0 0;
+}
