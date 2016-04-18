@@ -16,7 +16,6 @@
     </div>
 }
 
-<div class="pager">
-
+<ul class="pager">
     @Html.PageLinks(Model.paginginfo, x => Url.Action("List", new { page = x }))
-</div>
+</ul>

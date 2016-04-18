@@ -15,14 +15,16 @@ namespace SportStore.WebUI.HtmlHelpers
             StringBuilder result = new StringBuilder();
             for(int i = 1; i < pageinfo.TotalPages; i++)
             {
+                TagBuilder litag = new TagBuilder("li");
                 TagBuilder tag = new TagBuilder("a");//构造一个a标签
                 tag.MergeAttribute("href", pageUrl(i));
                 tag.InnerHtml = i.ToString();
                 if (i == pageinfo.CurrentPage)
                 {
-                    tag.AddCssClass("selected");
+                    litag.AddCssClass("disabled");
                 }
-                result.Append(tag.ToString());
+                litag.InnerHtml = tag.ToString();
+                result.Append(litag.ToString());
             }
             return MvcHtmlString.Create(result.ToString());
         }
