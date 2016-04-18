@@ -35,7 +35,7 @@ namespace SportStore.UnitTests
             Product[] proArray = result.ToArray();
             Assert.IsTrue(proArray.Length == 2);
             Assert.AreEqual(proArray[0].Name, "p4");
-            Assert.AreEqual(proArray[2].Name, "p5");
+            Assert.AreEqual(proArray[1].Name, "p5");
         }
     }
 }
