@@ -3,7 +3,7 @@
 @ViewBag.Title = "Sports Store: Your Cart";
 
 <h2>Your Cart</h2>
-    <table class="table table-bordered">
+    <table class="table table-condensed">
         <thead><tr>
         <th align="center">数量</th>
         <th align="center">名称</th>
@@ -18,17 +18,25 @@
                 <td align="left">@line.Product.Name</td>
                 <td align="right">@line.Product.Price</td>
                 <td align="right">@((line.Quantity*line.Product.Price).ToString("c"))</td>
+                <td width="100px">
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("ProductId", line.Product.ProductID)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input class="actionButtons" type="submit" value="删除" />
+                    }
+                </td>
             </tr>
         }
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="3" align="right">订单结算:</td>
-            <td align="right">@Model.Cart.ComputeTotalValue().ToString("c")</td>
+            <td colspan="4" align="right">订单结算:</td>
+            <td  align="right">@Model.Cart.ComputeTotalValue().ToString("c")</td>
         </tr>
     </tfoot>
 </table>
 
-<p class="actionButtons btn btn-block">
+<p class="actionButtons" align ="center">
     <a href="@Model.ReturnUrl">继续购物</a>
 </p>

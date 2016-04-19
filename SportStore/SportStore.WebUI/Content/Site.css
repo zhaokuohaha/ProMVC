@@ -129,11 +129,16 @@ tfoot td{
 }
 
 .actionButtons a, input.actionButtons{
-    font: 1.5em "微软雅黑";
+    font: 1em "微软雅黑";
     color: white;
     margin: .5em;
     text-decoration: none;
     padding: .15em 1.5em .2em 1.5em;
     background-color: #353535;
     border: 1px solid black;
+}
+
+a:hover,.actionButtons a:hover{
+    text-decoration:none;
+    color:wheat;
 }
