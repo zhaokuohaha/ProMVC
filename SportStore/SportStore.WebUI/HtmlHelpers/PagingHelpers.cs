@@ -13,7 +13,7 @@ namespace SportStore.WebUI.HtmlHelpers
         public static MvcHtmlString PageLinks(this HtmlHelper html, PagingInfo pageinfo, Func<int,string> pageUrl)
         {
             StringBuilder result = new StringBuilder();
-            for(int i = 1; i < pageinfo.TotalPages; i++)
+            for(int i = 1; i <= pageinfo.TotalPages; i++)
             {
                 TagBuilder litag = new TagBuilder("li");
                 TagBuilder tag = new TagBuilder("a");//构造一个a标签

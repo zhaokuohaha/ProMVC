@@ -68,9 +68,9 @@ namespace SportStore.UnitTests
 
             //断言
             Assert.AreEqual(result.ToString(),
-                @"<a href=""Page1"">1</a>"
-                    +@"<a class=""selected"" href=""Page2"">2</a>"
-                    +@"<a href=""Page3"">3</a>");
+                @"<li><a href=""Page1"">1</a></li>"
+                    + @"<li class=""disabled""><a href=""Page2"">2</a></li>"
+                    + @"<li><a href=""Page3"">3</a></li>");
         }
 
         /// <summary>
@@ -208,7 +208,7 @@ namespace SportStore.UnitTests
             int res3 = ((ProductsListViewModel)target.List("Cat3").Model).paginginfo.TotalItems;
             int resAll = ((ProductsListViewModel)target.List(null).Model).paginginfo.TotalItems;
             //动作---产品1的页面数
-            int resp1 = ((ProductsListViewModel)target.List(null).Model).paginginfo.TotalPages;
+            int resp1 = ((ProductsListViewModel)target.List("Cat1").Model).paginginfo.TotalPages;
             //断言
             Assert.AreEqual(res1, 3);
             Assert.AreEqual(res2, 1);
