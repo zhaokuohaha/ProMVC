@@ -181,5 +181,40 @@ namespace SportStore.UnitTests
         //    //断言
         //    Assert.AreEqual(categoryToSelect, reslut);
         //}
+
+
+        /// <summary>
+        /// 单元测试: 特定分类的产品数
+        /// </summary>
+        [TestMethod]
+        public void Generate_Category_Specific_Product_Count()
+        {
+            //准备 --- 创建模仿存储库
+            Mock<IProuctRepository> mock = new Mock<IProuctRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[]{
+                new Product {ProductID = 1, Name = "p1", Category = "Cat1" },
+                new Product {ProductID = 2, Name = "p2", Category = "Cat2"},
+                new Product {ProductID = 3, Name = "p3", Category = "Cat1"},
+                new Product {ProductID = 4, Name = "p4", Category = "Cat1"},
+                new Product {ProductID = 5, Name = "p5", Category = "Cat3"}
+            }.AsQueryable());
+            //准备---创建控制器并使页面容纳3个物品
+            ProductController target = new ProductController(mock.Object);
+            target.pageSize = 2;
+
+            //动作 -- 测试不同分类的产品数
+            int res1 = ((ProductsListViewModel)target.List("Cat1").Model).paginginfo.TotalItems;
+            int res2 = ((ProductsListViewModel)target.List("Cat2").Model).paginginfo.TotalItems;
+            int res3 = ((ProductsListViewModel)target.List("Cat3").Model).paginginfo.TotalItems;
+            int resAll = ((ProductsListViewModel)target.List(null).Model).paginginfo.TotalItems;
+            //动作---产品1的页面数
+            int resp1 = ((ProductsListViewModel)target.List(null).Model).paginginfo.TotalPages;
+            //断言
+            Assert.AreEqual(res1, 3);
+            Assert.AreEqual(res2, 1);
+            Assert.AreEqual(res3, 1);
+            Assert.AreEqual(resAll, 5);
+            Assert.AreEqual(resp1, 2);
+        }
     }
 }
