@@ -16,9 +16,10 @@ namespace SportStore.WebUI.Controllers
         /// </summary>
         private IProuctRepository repository;
         
-        public CartController(IProuctRepository repository)
+        public CartController(IProuctRepository repository, IOrderProcesser proc)
         {
             this.repository = repository;
+            this.orderProcessor = proc;
         }
 
         ///// <summary>
@@ -101,6 +102,29 @@ namespace SportStore.WebUI.Controllers
         public ViewResult Checkout()
         {
             return View(new ShippingDetails());
+        }
+
+
+        //提交订单第二步:  发邮件
+        private IOrderProcesser orderProcessor;
+        [HttpPost]
+        public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails)
+        {
+            if(cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Sorry Your Cart Is Empty!");
+            }
+
+            if (ModelState.IsValid)
+            {
+                orderProcessor.ProcessOrder(cart, shippingDetails);
+                cart.Clear();
+                return View("Completed");
+            }
+            else
+            {
+                return View(shippingDetails);
+            }
         }
     }
 }

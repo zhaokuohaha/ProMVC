@@ -5,6 +5,7 @@ using System.Web.Routing;
 using SportStore.Domain.Contrete;
 using SportStore.Domain.Abstract;
 using SportStore.Domain.Entities;
+using System.Configuration;
 
 namespace SportStore.WebUI.Infrastructure
 {
@@ -30,6 +31,11 @@ namespace SportStore.WebUI.Infrastructure
         private void AddBindings()
         {
             ninjectKernal.Bind<IProuctRepository>().To<EFProductRepository>();
+            EmailSettings emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+            ninjectKernal.Bind<IOrderProcesser>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
             //Mock<IProuctRepository> mock = new Mock<Domain.Abstract.IProuctRepository>();
             //mock.Setup(m => m.Products).Returns(new List<Product>
             //{
