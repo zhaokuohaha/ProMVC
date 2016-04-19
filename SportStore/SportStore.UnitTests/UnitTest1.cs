@@ -216,10 +216,6 @@ namespace SportStore.UnitTests
             Assert.AreEqual(resAll, 5);
             Assert.AreEqual(resp1, 2);
         }
-
-        /// <summary>
-        /// 单元测试
-        /// </summary>
-        [TestMethod]
+        
     }
 }
