@@ -31,11 +31,12 @@ namespace SportStore.UnitTests
                 new Product {ProductID = 4, Name = "p4" },
                 new Product {ProductID = 5, Name = "p5" },
             }.AsQueryable());
+            //准备,创建控制器并使页面大小为3
             ProductController controller = new ProductController(mock.Object);
             controller.pageSize = 3;
 
             //动作
-            ProductsListViewModel result = (ProductsListViewModel)controller.List(2).Model;
+            ProductsListViewModel result = (ProductsListViewModel)controller.List(null,2).Model;
 
             //断言
             Product[] proArray = result.Products.ToArray();
@@ -92,7 +93,7 @@ namespace SportStore.UnitTests
             controller.pageSize = 3;
 
             //动作
-            ProductsListViewModel result = (ProductsListViewModel)controller.List(2).Model;
+            ProductsListViewModel result = (ProductsListViewModel)controller.List(null,2).Model;
 
             //断言
             PagingInfo pageinfo = result.paginginfo;
@@ -100,6 +101,58 @@ namespace SportStore.UnitTests
             Assert.AreEqual(pageinfo.ItemsPerPage, 3);
             Assert.AreEqual(pageinfo.TotalItems, 5);
             Assert.AreEqual(pageinfo.TotalPages, 2);
+        }
+
+        /// <summary>
+        /// 单元测试  分类过滤
+        /// </summary>
+        [TestMethod]
+        public void Can_Filter_Products()
+        {
+            //准备----创建模仿存储库
+            Mock<IProuctRepository> mock = new Mock<IProuctRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[]{
+                new Product {ProductID = 1, Name = "p1", Category = "Cat1" },
+                new Product {ProductID = 2, Name = "p2", Category = "Cat2"},
+                new Product {ProductID = 3, Name = "p3", Category = "Cat1"},
+                new Product {ProductID = 4, Name = "p4", Category = "Cat2"},
+                new Product {ProductID = 5, Name = "p5", Category = "Cat3"}
+            }.AsQueryable());
+            ProductController controller = new ProductController(mock.Object);
+            controller.pageSize = 3;
+
+            //动作
+            Product[] result = ((ProductsListViewModel)controller.List("Cat2", 1).Model).Products.ToArray();
+
+            //断言
+            Assert.AreEqual(result.Length, 2);
+            Assert.IsTrue(result[0].Name == "p2" && result[0].Category == "Cat2");
+            Assert.IsTrue(result[1].Name == "p4" && result[1].Category == "Cat2");
+        }
+
+
+        [TestMethod]
+        public void Can_Create_Categories()
+        {
+            //准备
+            Mock<IProuctRepository> mock = new Mock<IProuctRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[]
+            {
+                new Product {ProductID = 1, Name = "p1", Category = "Cat1" },
+                new Product {ProductID = 2, Name = "p2", Category = "Cat1"},
+                new Product {ProductID = 3, Name = "p3", Category = "Cat2"},
+                new Product {ProductID = 4, Name = "p4", Category = "Cat3"}
+            }.AsQueryable());
+            NavController target = new NavController(mock.Object);
+
+            //动作
+            string[] results = ((IEnumerable<string>)target.Menu().Model).ToArray();
+
+            //断言
+            Assert.AreEqual(results.Length, 3);
+            Assert.AreEqual(results[0], "Cat1");
+            Assert.AreEqual(results[1], "Cat2");
+            Assert.AreEqual(results[2], "Cat3");
         }
     }
 }
