@@ -74,12 +74,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IOrderProcesser.cs" />
     <Compile Include="Abstract\IProuctRepository.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="Contrete\DefaultEmailSettings.cs" />
     <Compile Include="Contrete\EFDbContext.cs" />
     <Compile Include="Contrete\EFProductRepository.cs" />
+    <Compile Include="Contrete\EmailOrderProcessor.cs" />
+    <Compile Include="Contrete\EmailSettings.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\ShippingDetails.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

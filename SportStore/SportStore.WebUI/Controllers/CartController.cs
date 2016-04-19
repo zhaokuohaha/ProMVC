@@ -52,6 +52,13 @@ namespace SportStore.WebUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+        /// <summary>
+        /// 从购物车中删除商品
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <param name="productId">商品id</param>
+        /// <param name="returnUrl">执行完成后返回的链接</param>
+        /// <returns></returns>
         public RedirectToRouteResult RemoveFromCart(Cart cart,  int productId, string returnUrl)
         {
             Product product = repository.Products.FirstOrDefault(p => p.ProductID == productId);
@@ -62,13 +69,38 @@ namespace SportStore.WebUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+        /// <summary>
+        /// Index 控制页面跳转
+        /// </summary>
+        /// <param name="cart">购物车</param>
+        /// <param name="returnUrl">重定向路由</param>
+        /// <returns></returns>
         public ViewResult Index(Cart cart,  string returnUrl)
         {
             return View(new CartIndexViewModel
             {
                 Cart = cart,
                 ReturnUrl = returnUrl
-        });
+            });
         }
-}
+        
+        /// <summary>
+        /// 查看购物车
+        /// </summary>
+        /// <param name="cart">购物车</param>
+        /// <returns></returns>
+        public PartialViewResult Summary(Cart cart)
+        {
+            return PartialView(cart);
+        }
+
+        /// <summary>
+        /// 提交订单第一步---检查用户信息
+        /// </summary>
+        /// <returns></returns>
+        public ViewResult Checkout()
+        {
+            return View(new ShippingDetails());
+        }
+    }
 }
