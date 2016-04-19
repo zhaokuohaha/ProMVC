@@ -130,7 +130,9 @@ namespace SportStore.UnitTests
             Assert.IsTrue(result[1].Name == "p4" && result[1].Category == "Cat2");
         }
 
-
+        /// <summary>
+        /// 单元测试: 生成分类列表
+        /// </summary>
         [TestMethod]
         public void Can_Create_Categories()
         {
@@ -154,5 +156,30 @@ namespace SportStore.UnitTests
             Assert.AreEqual(results[1], "Cat2");
             Assert.AreEqual(results[2], "Cat3");
         }
+
+        /// <summary>
+        /// 单元测试: 报告被选中分类
+        /// </summary>
+        //[TestMethod]
+        //public void Indicates_Selected_Categories()
+        //{
+        //    //准备 --- 创建模仿存储库
+        //    Mock<IProuctRepository> mock = new Mock<IProuctRepository>();
+        //    mock.Setup(m => m.Products).Returns(new Product[]
+        //    {
+        //        new Product {ProductID = 1, Name = "P1", Category = "Apples" },
+        //        new Product {ProductID = 4, Name = "P2", Category = "Oranges" }
+        //    }.AsQueryable());
+        //    //准备 --- 创建控制器
+        //    NavController target = new NavController(mock.Object);
+        //    //准备 --- 定义已选分类
+        //    string categoryToSelect = "Apples";
+#warning 这一步过不去, 不知道为啥
+        //    //动作
+        //    string reslut = target.Menu(categoryToSelect).ViewBag.SelectedCategory;
+
+        //    //断言
+        //    Assert.AreEqual(categoryToSelect, reslut);
+        //}
     }
 }
