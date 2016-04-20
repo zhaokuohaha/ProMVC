@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<SportStore.Domain.Entities.Product>
 
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
 @{
     ViewBag.Title = "Admin: All Products";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -30,5 +35,7 @@
     </tr>
 }
 </table>
-
+<script>
+    $("#Grid").DataTable();
+</script>
 <p>@Html.ActionLink("添加商品","Create")</p>
