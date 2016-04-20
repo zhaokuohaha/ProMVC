@@ -13,5 +13,6 @@ namespace SportStore.Domain.Abstract
     public interface IProuctRepository
     {
         IQueryable<Product> Products { get; }
+        void SaveProduct(Product product);
     }
 }

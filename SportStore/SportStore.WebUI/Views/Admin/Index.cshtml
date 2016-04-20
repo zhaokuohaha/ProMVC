@@ -1,0 +1,34 @@
+﻿@model IEnumerable<SportStore.Domain.Entities.Product>
+
+@{
+    ViewBag.Title = "Admin: All Products";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>所有商品</h1>
+<table class="Grid">
+
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.ProductID)</th>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th class="NumericCol">@Html.DisplayNameFor(model => model.Price)</th>
+        <th>操作</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.ProductID</td>
+        <td>@Html.ActionLink(item.Name, "Edit", new { item.ProductID })</td>
+        <td class="NumericCol"> @item.Price</td>
+        <td>
+            @using (Html.BeginForm("Delete", "Admin"))
+            {
+                @Html.Hidden("ProductID",item.ProductID)
+                <input type="submit" value="删除" />
+            }
+        </td>
+    </tr>
+}
+</table>
+
+<p>@Html.ActionLink("添加商品","Create")</p>
