@@ -1,9 +1,11 @@
 ﻿@model IEnumerable<SportStore.Domain.Entities.Product>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-<link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
-<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+@section header{
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+}
 
 @{
     ViewBag.Title = "Admin: All Products";
@@ -11,15 +13,15 @@
 }
 <h1>所有商品</h1>
 <table class="Grid">
-
-    <tr>
-        <th>@Html.DisplayNameFor(model => model.ProductID)</th>
-        <th>@Html.DisplayNameFor(model => model.Name)</th>
-        <th class="NumericCol">@Html.DisplayNameFor(model => model.Price)</th>
-        <th>操作</th>
-        <th></th>
-    </tr>
-
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ProductID)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th class="NumericCol">@Html.DisplayNameFor(model => model.Price)</th>
+            <th>操作</th>
+            <th></th>
+        </tr>
+    </thead>
 @foreach (var item in Model) {
     <tr>
         <td>@item.ProductID</td>
@@ -36,6 +38,17 @@
 }
 </table>
 <script>
-    $("#Grid").DataTable();
+    $('.Grid').dataTable({
+        "language": {
+            "lengthMenu": "每页 _MENU_ 条记录",
+            "zeroRecords": "没有找到记录",
+            "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+            "infoEmpty": "无记录",
+            "infoFiltered": "(从 _MAX_ 条记录过滤)"
+        },
+        "bAutoWidth": true,
+        "bProcessing": true,
+        "bSort": true
+    });
 </script>
 <p>@Html.ActionLink("添加商品","Create")</p>
