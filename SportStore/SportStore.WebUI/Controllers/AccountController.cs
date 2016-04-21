@@ -35,7 +35,7 @@ namespace SportStore.WebUI.Controllers
             }
             else
             {
-                return View();
+                return View("Check");
             }
         }
     }
