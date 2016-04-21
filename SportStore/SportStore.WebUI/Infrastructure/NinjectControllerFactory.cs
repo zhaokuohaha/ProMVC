@@ -6,6 +6,8 @@ using SportStore.Domain.Contrete;
 using SportStore.Domain.Abstract;
 using SportStore.Domain.Entities;
 using System.Configuration;
+using SportStore.WebUI.Infrastructure.Concrete;
+using SportStore.WebUI.Infrastructure.Abstrat;
 
 namespace SportStore.WebUI.Infrastructure
 {
@@ -44,6 +46,7 @@ namespace SportStore.WebUI.Infrastructure
             //    new Product {Name = "Running shoes",Price=95 },
             //}.AsQueryable());
             //ninjectKernal.Bind<IProuctRepository>().ToConstant(mock.Object);
+            ninjectKernal.Bind<IAuthProvider>().To<FoemAuthProvider>();
         }
     }
 }
