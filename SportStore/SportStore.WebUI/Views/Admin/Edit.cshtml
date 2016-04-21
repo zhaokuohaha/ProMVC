@@ -6,7 +6,7 @@
 }
 
 <h1>编辑 @Model.Name</h1>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit","Admin"))
 {
     @Html.EditorForModel()
     <input type="submit" value="保存" />
