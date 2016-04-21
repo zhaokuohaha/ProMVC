@@ -105,5 +105,31 @@ namespace SportStore.UnitTests
             //---检查方法的结果类型---ViewResult
             Assert.IsInstanceOfType(result, typeof(ViewResult));
         }
+
+
+        //测试 删除产品---
+        //Idy有效: 调用存储库的DeleteProduct方法, 把相应的对象删除
+        [TestMethod]
+        public void Can_Delete_Valid_Products()
+        {
+            //准备---创建一个产品
+            Product prod = new Product { ProductID = 2, Name = "Test" };
+            //准备---创建模仿存储库
+            Mock<IProuctRepository> mock = new Mock<IProuctRepository>();
+            mock.Setup(m => m.Products).Returns(new Product[]
+            {
+                new Product {ProductID = 1, Name = "P1" },
+                new Product {ProductID = 2, Name = "P2" },
+            }.AsQueryable());
+            //准备---创建控制器
+            AdminController target = new AdminController(mock.Object);
+
+            //动作---删除商品
+            target.Delete(prod.ProductID);
+
+            //断言---确保存储库的删除方法是针对正确的产盘被调用的
+            mock.Verify(m => m.DeleteProduct(prod.ProductID));
+
+        }
     }
 }

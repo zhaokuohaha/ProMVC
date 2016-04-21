@@ -12,7 +12,18 @@ namespace SportStore.Domain.Abstract
     /// </summary>
     public interface IProuctRepository
     {
+        /// <summary>
+        /// 返回产品的集合
+        /// </summary>
         IQueryable<Product> Products { get; }
+        /// <summary>
+        /// 保存产品, Savechange() , 其中有 Add 和 Update 的代码
+        /// </summary>
+        /// <param name="product"></param>
         void SaveProduct(Product product);
+        /// <summary>
+        /// 删除一个商品
+        /// </summary>
+        Product DeleteProduct(int productId);
     }
 }
